@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamond Mining Process Quiz</title>
+    <script src=https://cdn.jsdelivr.net/pyodide/v0.18.1/full/pyodide.js></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        textarea { width: 100%; height: 200px; }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Diamond Mining Process Quiz!</h1>
+    <h2>By Laura Cunha</h2>
+    <p>Answer all the questions correctly to win!</p>
+    <p>Make sure you type in the answers correctly.</p>
+    
+    <textarea id="output" readonly></textarea>
+    <button id="startQuiz">Start Quiz</button>
+
+    <script>
+        async function main() {
+            let pyodide = await loadPyodide();
+            await pyodide.loadPackage('numpy'); // Just in case you need NumPy in the future
+
+            const quizCode = `
+def start_quiz():
+    output = []
+    output.append("Welcome to the Diamond Mining Process Quiz!\\n By Laura Cunha")
+    output.append("Answer all the questions correctly to win!")
+    output.append("Make sure you type in the answers correctly.")
+    output.append("Step 1. Exploration or Setting Up Technology?")
+
+    choice1 = input("Enter '1' for exploration or '2' for setting up technology.")
+    if choice1 == "2":
+        output.append("That is incorrect. You have to restart")
+    elif choice1 == "1":
+        output.append("That is correct!")
+        output.append("Step 2. Mining or Locating Diamonds?")
+        choice2 = input("Enter '1' for mining or '2' for locating diamonds.")
+
+        if choice2 == "2":
+            output.append("Wrong response. You have to restart.")
+        elif choice2 == "1":
+            output.append("Right answer. Moving on.")
+            output.append("Step 3. Checking Prices or Ore Processing?")
+            choice3 = input("Enter '1' for checking prices or '2' for ore processing.")
+
+            if choice3 == "1":
+                output.append("That is not right. Back to the start.")
+            elif choice3 == "2":
+                output.append("Correct answer.")
+                output.append("Step 4. Looking For Buyers or Cleaning and packaging?")
+                choice4 = input("Enter '1' for looking for buyers or '2' for cleaning and packaging.")
+
+                if choice4 == "1":
+                    output.append("Incorrect. Back to the start.")
+                elif choice4 == "2":
+                    output.append("Right!")
+                    output.append("Step 5. Sales Of Rough Diamonds or Examining Diamonds?")
+                    choice5 = input("Enter '1' for sales of rough diamonds or '2' for examining diamonds.")
+
+                    if choice5 == "2":
+                        output.append("Wrong answer! Have to restart!")
+                    elif choice5 == "1":
+                        output.append("That is right. You can move on!")
+                        output.append("Step 6. Cutting And Polishing or Shipping Sold Rough Diamonds?")
+                        choice6 = input("Enter '1' for cutting and polishing or '2' for shipping sold rough diamonds.")
+
+                        if choice6 == "2":
+                            output.append("You were close to finishing but you have to restart :(")
+                        elif choice6 == "1":
+                            output.append("Correct.")
+                            output.append("You are up to the final stage...")
+                            output.append("Step 7. Sorting Polished Diamonds or Sales Of Gemstones?")
+                            choice7 = input("Enter '1' for sorting polished diamonds or '2' for sales of gemstones.")
+
+                            if choice7 == "1":
+                                output.append("You were on the final stage! You have done well but, unfortunately you got it wrong :/")
+                                output.append("Sorry. Back to the start!")
+                            elif choice7 == "2":
+                                output.append("That is right!")
+                                output.append("You have completed the quiz!")
+                                output.append("Great job:)")
+                        else:
+                            output.append("You entered an invalid choice. Restarting...")
+                    else:
+                        output.append("You entered an invalid choice. Restarting...")
+                else:
+                    output.append("You entered an invalid choice. Restarting...")
+            else:
+                output.append("You entered an invalid choice. Restarting...")
+        else:
+            output.append("You entered an invalid choice. Restarting...")
+    else:
+        output.append("You entered an invalid choice. Restarting...")
+    
+    return \\n.join(output)
+
+result = start_quiz()
+result
+            `;
+
+            let result = await pyodide.runPython(quizCode);
+            document.getElementById("output").value = result;
+        }
+
+        document.getElementById("startQuiz").addEventListener("click", main);
+    </script>
+</body>
+</html>
