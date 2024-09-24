@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamond Mining Process Quiz</title>
+    <script src=https://cdn.jsdelivr.net/pyodide/v0.18.1/full/pyodide.js></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .question { margin: 10px 0; }
+        #output { white-space: pre-wrap; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Diamond Mining Process Quiz!</h1>
+    <h2>By Laura Cunha</h2>
+    <p>Answer all the questions correctly to win!</p>
+    <p>Make sure you type in the answers correctly.</p>
+    
+    <div id="quiz"></div>
+    <input type="text" id="answer" placeholder="Type your answer here...">
+    <button id="submit">Submit Answer</button>
+    <div id="output"></div>
+
+    <script>
+        let currentStep = 0;
+        const steps = [
+            "Step 1. Exploration or Setting Up Technology? (Enter '1' for exploration or '2' for setting up technology.)",
+            "Step 2. Mining or Locating Diamonds? (Enter '1' for mining or '2' for locating diamonds.)",
+            "Step 3. Checking Prices or Ore Processing? (Enter '1' for checking prices or '2' for ore processing.)",
+            "Step 4. Looking For Buyers or Cleaning and Packaging? (Enter '1' for looking for buyers or '2' for cleaning and packaging.)",
+            "Step 5. Sales Of Rough Diamonds or Examining Diamonds? (Enter '1' for sales of rough diamonds or '2' for examining diamonds.)",
+            "Step 6. Cutting And Polishing or Shipping Sold Rough Diamonds? (Enter '1' for cutting and polishing or '2' for shipping sold rough diamonds.)",
+            "Step 7. Sorting Polished Diamonds or Sales Of Gemstones? (Enter '1' for sorting polished diamonds or '2' for sales of gemstones.)"
+        ];
+        const correctAnswers = ["1", "1", "2", "2", "1", "1", "2"];
+        const output = [];
+
+        function showQuestion() {
+            document.getElementById("quiz").innerText = steps[currentStep];
+            document.getElementById("answer").value = '';
+        }
+
+        async function main() {
+            let pyodide = await loadPyodide();
+            let result = await pyodide.runPython(`
+def check_answer(step, answer):
+    answers = ['1', '1', '2', '2', '1', '1', '2']
+    if answer == answers[step]:
+        return True
+    return False
+            `);
+
+            document.getElementById("submit").onclick = () => {
+                const answer = document.getElementById("answer").value;
+                if (result.check_answer(currentStep, answer)) {
+                    output.push(`Step ${currentStep + 1}: Correct!`);
+                    currentStep++;
+                    if (currentStep < steps.length) {
+                        showQuestion();
+                    } else {
+                        output.push("Congratulations! You've completed the quiz!");
+                        document.getElementById("quiz").style.display = "none";
+                    }
+                } else {
+                    output.push(`Step ${currentStep + 1}: Incorrect! Back to the start.`);
+                    currentStep = 0;
+                    document.getElementById("quiz").style.display = "none";
+                }
+                document.getElementById("output").innerText = output.join(\\n);
+            };
+
+            showQuestion();
+        }
+
+        main();
+    </script>
+</body>
+</html>
