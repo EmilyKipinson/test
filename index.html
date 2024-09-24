@@ -37,14 +37,16 @@
         const output = [];
 
         function showQuestion() {
+            // Display the current question
             if (currentStep < steps.length) {
                 document.getElementById("quiz").innerText = steps[currentStep];
-                document.getElementById("answer").value = '';
-                document.getElementById("output").innerText = '';
+                document.getElementById("answer").value = ''; // Clear previous answer
+                document.getElementById("output").innerText = ''; // Clear previous output
             } else {
+                // End of quiz message
                 document.getElementById("quiz").innerText = "Congratulations! You've completed the quiz!";
-                document.getElementById("answer").style.display = 'none';
-                document.getElementById("submit").style.display = 'none';
+                document.getElementById("answer").style.display = 'none'; // Hide input
+                document.getElementById("submit").style.display = 'none'; // Hide button
             }
         }
 
@@ -56,9 +58,11 @@ def check_answer(step, answer):
     return answer == answers[step]
             `);
 
-            document.getElementById("submit").onclick = () => {
+            document.getElementById("submit").onclick = async () => {
                 const answer = document.getElementById("answer").value.trim();
-                if (result.check_answer(currentStep, answer)) {
+                const result = await pyodide.runPython(`check_answer(${currentStep}, '${answer}')`);
+
+                if (result) {
                     output.push(`Step ${currentStep + 1}: Correct!`);
                     currentStep++;
                     showQuestion();
@@ -67,7 +71,7 @@ def check_answer(step, answer):
                     currentStep = 0; // Reset to the first question
                     showQuestion(); // Show the first question
                 }
-                document.getElementById("output").innerText = output.join(\\n);
+                document.getElementById("output").innerText = output.join("\n");
             };
 
             showQuestion(); // Show the first question
