@@ -32,5 +32,113 @@
         <p id="choice1Result"></p>
     </div>
 
-    <div id="step2" style="visibi
+    <div id="step2" style="visibility: hidden;">
+        <h2>Step 2: Mining or Locating Diamonds?</h2>
+        <p>Enter '1' for mining or '2' for locating diamonds.</p>
+        <input type="text" id="choice2">
+        <button onclick="checkAnswer(2)">Submit</button>
+        <p id="choice2Result"></p>
+    </div>
+
+    <div id="step3" style="visibility: hidden;">
+        <h2>Step 3: Checking Prices or Ore Processing?</h2>
+        <p>Enter '1' for checking prices or '2' for ore processing.</p>
+        <input type="text" id="choice3">
+        <button onclick="checkAnswer(3)">Submit</button>
+        <p id="choice3Result"></p>
+    </div>
+
+    <div id="step4" style="visibility: hidden;">
+        <h2>Step 4: Looking For Buyers or Cleaning and Packaging?</h2>
+        <p>Enter '1' for looking for buyers or '2' for cleaning and packaging.</p>
+        <input type="text" id="choice4">
+        <button onclick="checkAnswer(4)">Submit</button>
+        <p id="choice4Result"></p>
+    </div>
+
+    <div id="step5" style="visibility: hidden;">
+        <h2>Step 5: Sales Of Rough Diamonds or Examining Diamonds?</h2>
+        <p>Enter '1' for sales of rough diamonds or '2' for examining diamonds.</p>
+        <input type="text" id="choice5">
+        <button onclick="checkAnswer(5)">Submit</button>
+        <p id="choice5Result"></p>
+    </div>
+
+    <div id="step6" style="visibility: hidden;">
+        <h2>Step 6: Cutting And Polishing or Shipping Sold Rough Diamonds?</h2>
+        <p>Enter '1' for cutting and polishing or '2' for shipping sold rough diamonds.</p>
+        <input type="text" id="choice6">
+        <button onclick="checkAnswer(6)">Submit</button>
+        <p id="choice6Result"></p>
+    </div>
+
+    <div id="step7" style="visibility: hidden;">
+        <h2>Step 7: Sorting Polished Diamonds or Sales Of Gemstones?</h2>
+        <p>Enter '1' for sorting polished diamonds or '2' for sales of gemstones.</p>
+        <input type="text" id="choice7">
+        <button onclick="checkAnswer(7)">Submit</button>
+        <p id="choice7Result"></p>
+    </div>
+
+    <button id="restartButton" onclick="resetQuiz()" style="visibility: hidden;">Restart Quiz</button>
+
+    <script>
+        function checkAnswer(step) {
+            let choice = document.getElementById("choice" + step).value;
+            let result = document.getElementById("choice" + step + "Result");
+            let nextQuestion = document.getElementById("step" + (step + 1));
+            let restartButton = document.getElementById("restartButton");
+
+            switch (step) {
+                case 1:
+                    if (choice === "2") {
+                        result.textContent = "That is incorrect. You have to restart.";
+                        restartButton.style.visibility = 'visible';
+                    } else if (choice === "1") {
+                        result.textContent = "That is correct! Moving on to Step 2.";
+                        nextQuestion.style.visibility = 'visible';
+                    } else {
+                        result.textContent = "Invalid input. Please enter '1' or '2'.";
+                    }
+                    break;
+                case 2:
+                    if (choice === "2") {
+                        result.textContent = "Wrong response. You have to restart.";
+                        restartButton.style.visibility = 'visible';
+                    } else if (choice === "1") {
+                        result.textContent = "Right answer. Moving on.";
+                        nextQuestion.style.visibility = 'visible';
+                    } else {
+                        result.textContent = "Invalid input. Please enter '1' or '2'.";
+                    }
+                    break;
+                case 3:
+                    if (choice === "1") {
+                        result.textContent = "That is not right. Back to the start.";
+                        restartButton.style.visibility = 'visible';
+                    } else if (choice === "2") {
+                        result.textContent = "Correct answer. Moving on to Step 4.";
+                        nextQuestion.style.visibility = 'visible';
+                    } else {
+                        result.textContent = "Invalid input. Please enter '1' or '2'.";
+                    }
+                    break;
+                case 4:
+                    if (choice === "1") {
+                        result.textContent = "Incorrect. Back to the start.";
+                        restartButton.style.visibility = 'visible';
+                    } else if (choice === "2") {
+                        result.textContent = "Right! Moving on to Step 5.";
+                        nextQuestion.style.visibility = 'visible';
+                    } else {
+                        result.textContent = "Invalid input. Please enter '1' or '2'.";
+                    }
+                    break;
+                case 5:
+                    if (choice === "2") {
+                        result.textContent = "Wrong answer! Have to restart!";
+                        restartButton.style.visibility = 'visible';
+                    } else if (choice === "1") {
+                        result.text
+
 
