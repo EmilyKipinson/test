@@ -1,0 +1,68 @@
+print("Welcome to the Diamond Mining Process Quiz!\n By Laura Cunha")
+print("Answer all the questions correctly to win!")
+print("Make sure you type in the answers correctly.")
+print("Step 1. Exploration or Setting Up Technology?")
+
+choice1 = input("Enter '1' for exploration or '2' for setting up technology.")
+
+if choice1 == "2":
+    print("That is incorrect. You have to restart")
+elif choice1 == "1":
+    print("That is correct!")
+    print("Step 2. Mining or Locating Diamonds?")
+    choice2 = input("Enter '1' for mining or '2' for locating diamonds.")
+
+    if choice2 == "2s":
+        print("Wrong response. You have to restart.")
+    elif choice2 == "1":
+        print("Right answer. Moving on.")
+        print("Step 3. Checking Prices or Ore Processing?")
+        choice3 = input("Enter '1' for checking prices or '2' for ore processing.")
+
+        if choice3 == "1":
+            print("That is not right. Back to the start.")
+        elif choice3 == "2":
+            print("Correct answer.")
+            print("Step 4. Looking For Buyers or Cleaning and packaging?")
+            choice4 = input("Enter '1' for looking for buyers or '2' for cleaning and packaging.")
+            
+            if choice4 == "1":
+                print("Incorrect. Back to the start.")
+            elif choice4 == "2":
+                print("Right!")
+                print("Step 5. Sales Of Rough Diamonds or Examining Diamonds?")
+                choice5 = input("Enter '1' for sales of rough diamonds or '2' for examining diamonds.")
+                
+                if choice5 == "2":
+                    print("Wrong answer! Have to restart!")
+                elif choice5 == "1":
+                    print("That is right. You can move on!")
+                    print("Step 6. Cutting And Polishing or Shipping Sold Rough Diamonds?")
+                    choice6 = input("Enter '1' for cutting and polishing or '2' for shipping sold rough diamonds.")
+                    
+                    if choice6 == "2":
+                        print("You were close to finishing but you have to restart :(")
+                    elif choice6 == "1":
+                        print("Correct.")
+                        print("You are up to the final stage...")
+                        print("Step 7. Sorting Polished Diamonds or Sales Of Gemstones?")
+                        choice7 = input("Enter '1' for sorting polished diamonds or '2' for sales of gemstones.")
+                        
+                        if choice7 == "1":
+                            print("You were on the final stage! You have done well but, unfortunatly you got it wrong :/\n Sorry. Back to the start!")
+                        elif choice7 == "2":
+                            print("That is right!\n You have completed the quiz!\n Great job:)")
+                        else:
+                            print("You either can not press the button that is a choice or you are trying to break the system.\n Either way you have to restart for typing in something that is not an answer.")
+                    else:
+                        print("You either can not press a button that is a choice or you are trying to break the system.\n Either way you have to restart for typing in something that is not an answer.")
+                else:
+                    print("You either can not press a button that is a choice or you are trying to break the system.\n Either way you have to restart for typing in something that is not an answer.")
+            else:
+                print("You either can not press a button that is a choice or you are trying to break the system.\n Either way you have to restart for typing in something that is not an answer.")
+        else:
+            print("You either can not press a button that is a choice or you are trying to break the system.\n Either way you have to restart for typing in something that is not an answer.")
+    else:
+        print("You either can not press a button that is a choice or you are trying to break the system.\n Either way you have to restart for typing in something that is not an answer.")
+else:
+    print("You either can not press a button that is a choice or you are trying to break the system.\n Either way you have to restart for typing in something that is not an answer.")
