@@ -1,147 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Diamond Mining Process Quiz</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamond Mining Process Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 20px;
+        }
+        h1 {
+            color: #007bff;
+        }
+        button {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-  <h1>Diamond Mining Process Quiz</h1>
-  <p>Answer all the questions correctly to win!</p>
-  <p>Make sure you type in the answers correctly.</p>
-  <h2>Step 1. Exploration or Setting Up Technology?</h2>
-  Enter '1' for exploration or '2' for setting up technology.<br />
-  <input type="text" id="choice1">
-  <button onclick="checkAnswer(1)">Submit</button>
-  <p id="choice1Result"></p>
+    <h1>Diamond Mining Process Quiz</h1>
+    <p>Answer all the questions correctly to win!</p>
+    <p>Make sure you type in the answers correctly.</p>
 
-  <div id=2 style="visibility: hidden">
-  <h2>Step 2. Mining or Locating Diamonds?</h2>
- Enter '1' for mining or '2' for locating diamonds.<br /> 
-  <input type="text" id="choice2">
-  <button onclick="checkAnswer(2)">Submit</button>
-  <p id="choice2Result"></p>
-  </div>
+    <div id="step1">
+        <h2>Step 1: Exploration or Setting Up Technology?</h2>
+        <p>Enter '1' for exploration or '2' for setting up technology.</p>
+        <input type="text" id="choice1">
+        <button onclick="checkAnswer(1)">Submit</button>
+        <p id="choice1Result"></p>
+    </div>
 
-  <div id=3 style="visibility: hidden">
-  <h2>Step 3. Checking Prices or Ore Processing?</h2>
-  Enter '1' for checking prices or '2' for ore processing.<br />
-  <input type="text" id="choice3">
-  <button onclick="checkAnswer(3)">Submit</button>
-  <p id="choice3Result"></p>
-  </div>
+    <div id="step2" style="visibi
 
-  <div id=4 style="visibility: hidden">
-  <h2>Step 4. Looking For Buyers or Cleaning and packaging?</h2>
-  Enter '1' for looking for buyers or '2' for cleaning and packaging.<br />
-  <input type="text" id="choice4">
-  <button onclick="checkAnswer(4)">Submit</button>
-  <p id="choice4Result"></p>
-  </div>
-
-  <div id=5 style="visibility: hidden">
-  <h2>Step 5. Sales Of Rough Diamonds or Examining Diamonds?</h2>
-  Enter '1' for sales of rough diamonds or '2' for examining diamonds.<br />
-  <input type="text" id="choice5">
-  <button onclick="checkAnswer(5)">Submit</button>
-  <p id="choice5Result"></p>
-  </div>
-
-  <div id=6 style="visibility: hidden">
-  <h2>Step 6. Cutting And Polishing or Shipping Sold Rough Diamonds?</h2>
-  Enter '1' for cutting and polishing or '2' for shipping sold rough diamonds.<br />
-  <input type="text" id="choice6">
-  <button onclick="checkAnswer(6)">Submit</button>
-  <p id="choice6Result"></p>
-  </div>
-
-  <div id=7 style="visibility: hidden">
-  <h2>Step 7. Sorting Polished Diamonds or Sales Of Gemstones?</h2>
-  Enter '1' for sorting polished diamonds or '2' for sales of gemstones.<br />
-  <input type="text" id="choice7">
-  <button onclick="checkAnswer(7)">Submit</button>
-  <p id="choice7Result"></p>
-  </div>
-
-  <script>
-    function checkAnswer(step) {
-      let choice = document.getElementById("choice" + step).value;
-      let result = document.getElementById("choice" + step + "Result");
-      
-      var next_question = document.getElementById(step+1);
-
-      switch (step) {
-        case 1:
-          if (choice === "2") {
-            result.textContent = "That is incorrect. You have to restart";
-          } else if (choice === "1") {
-            result.textContent = "That is correct! Moving on to Step 2.";
-            next_question.style.visibility = 'visible';
-          } else {
-            result.textContent = "Invalid input. Please enter '1' or '2'.";
-          }
-          break;
-        case 2:
-          if (choice === "2") {
-            result.textContent = "Wrong response. You have to restart.";
-          } else if (choice === "1") {
-            result.textContent = "Right answer. Moving on.";
-            next_question.style.visibility = 'visible';
-          } else {
-            result.textContent = "Invalid input. Please enter '1' or '2'.";
-          }
-          break;
-        case 3:
-          if (choice === "1") {
-            result.textContent = "That is not right. Back to the start.";
-          } else if (choice === "2") {
-            result.textContent = "Correct answer. Moving on to Step 4.";
-            next_question.style.visibility = 'visible';
-          } else {
-            result.textContent = "Invalid input. Please enter '1' or '2'.";
-          }
-          break;
-        case 4:
-          if (choice === "1") {
-            result.textContent = "Incorrect. Back to the start.";
-          } else if (choice === "2") {
-            result.textContent = "Right! Moving on to Step 5.";
-            next_question.style.visibility = 'visible';
-          } else {
-            result.textContent = "Invalid input. Please enter '1' or '2'.";
-          }
-          break;
-        case 5:
-          if (choice === "2") {
-            result.textContent = "Wrong answer! Have to restart!";
-          } else if (choice === "1") {
-            result.textContent = "That is right. You can move on to Step 6.";
-            next_question.style.visibility = 'visible';
-          } else {
-            result.textContent = "Invalid input. Please enter '1' or '2'.";
-          }
-          break;
-        case 6:
-          if (choice === "2") {
-            result.textContent = "You were close to finishing but you have to restart :(";
-          } else if (choice === "1") {
-            result.textContent = "Correct. Moving on to Step 7.";
-            next_question.style.visibility = 'visible';
-          } else {
-            result.textContent = "Invalid input. Please enter '1' or '2'.";
-          }
-          break;
-        case 7:
-          if (choice === "1") {
-            result.textContent = "You were on the final stage! You have done well but, unfortunately you got it wrong :/\n Sorry. Back to the start!";
-          } else if (choice === "2") {
-            result.textContent = "That is right!\n You have completed the quiz!\n Great job:)";
-          } else {
-            result.textContent = "Invalid input. Please enter '1' or '2'.";
-          }
-          break;
-        default:
-          result.textContent = "Invalid step number.";
-      }
-    }
-  </script>
-</body>
-</html>
