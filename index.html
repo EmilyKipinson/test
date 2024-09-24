@@ -30,22 +30,27 @@
             "Step 3: Checking Prices or Ore Processing? (Enter '1' for checking prices or '2' for ore processing.)",
             "Step 4: Looking For Buyers or Cleaning and Packaging? (Enter '1' for looking for buyers or '2' for cleaning and packaging.)",
             "Step 5: Sales Of Rough Diamonds or Examining Diamonds? (Enter '1' for sales of rough diamonds or '2' for examining diamonds.)",
-           "Step 6: Cutting And Polishing or Shipping Sold Rough Diamonds? (Enter '1' for cutting and polishing or '2' for shipping sold rough diamonds.)",
+            "Step 6: Cutting And Polishing or Shipping Sold Rough Diamonds? (Enter '1' for cutting and polishing or '2' for shipping sold rough diamonds.)",
             "Step 7: Sorting Polished Diamonds or Sales Of Gemstones? (Enter '1' for sorting polished diamonds or '2' for sales of gemstones.)"
         ];
         const correctAnswers = ["1", "1", "2", "2", "1", "1", "2"];
         const output = [];
 
         function showQuestion() {
-            document.getElementById("quiz").innerText = steps[currentStep];
-            document.getElementById("answer").value = '';
+            if (currentStep < steps.length) {
+                document.getElementById("quiz").innerText = steps[currentStep];
+                document.getElementById("answer").value = '';
+                document.getElementById("output").innerText = '';
+            } else {
+                document.getElementById("quiz").innerText = "Congratulations! You've completed the quiz!";
+                document.getElementById("answer").style.display = 'none';
+                document.getElementById("submit").style.display = 'none';
+            }
         }
 
         async function main() {
             let pyodide = await loadPyodide();
-            await pyodide.loadPackage("numpy"); // Not necessary but can be useful
-
-            let result = await pyodide.runPython(`
+            await pyodide.runPython(`
 def check_answer(step, answer):
     answers = ['1', '1', '2', '2', '1', '1', '2']
     return answer == answers[step]
@@ -56,21 +61,16 @@ def check_answer(step, answer):
                 if (result.check_answer(currentStep, answer)) {
                     output.push(`Step ${currentStep + 1}: Correct!`);
                     currentStep++;
-                    if (currentStep < steps.length) {
-                        showQuestion();
-                    } else {
-                        output.push("Congratulations! You've completed the quiz!");
-                        document.getElementById("quiz").style.display = "none";
-                    }
+                    showQuestion();
                 } else {
-                    output.push(`Step ${currentStep + 1}: Incorrect! Back to the start.`);
-                    currentStep = 0;
-                    showQuestion(); // Reset to the first question
+                    output.push(`Step ${currentStep + 1}: Incorrect! You need to restart.`);
+                    currentStep = 0; // Reset to the first question
+                    showQuestion(); // Show the first question
                 }
                 document.getElementById("output").innerText = output.join(\\n);
             };
 
-            showQuestion();
+            showQuestion(); // Show the first question
         }
 
         main();
